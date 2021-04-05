@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="70mm"
+   height="70mm"
+   viewBox="0 0 70 70"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="carreau.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="-207.4717"
+     inkscape:cy="381.98423"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:window-width="1577"
+     inkscape:window-height="967"
+     inkscape:window-x="69"
+     inkscape:window-y="4"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:0.233747"
+       id="rect833"
+       width="69.766258"
+       height="69.766251"
+       x="0.1168735"
+       y="0.1168735" />
+    <path
+       d="m 35.907737,20.410318 c 0,0 3.099405,5.291469 6.715248,8.995853 3.615843,3.703989 8.781777,6.878948 8.781777,6.878948 0,0 -5.165546,3.174961 -8.781777,6.878949 -3.61468,3.706767 -6.714085,8.997043 -6.714085,8.997043 0,0 -3.099404,-5.291467 -6.715248,-8.995852 -3.618555,-3.702799 -8.782938,-6.877758 -8.782938,-6.877758 0,0 5.165546,-3.174961 8.781777,-6.878948 3.61468,-3.706766 6.714085,-8.997044 6.714085,-8.997044"
+       id="path871"
+       style="stroke-width:0.392119;fill:#ff0000" />
+  </g>
+</svg>

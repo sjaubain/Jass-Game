@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Form</title>
+	<link rel="stylesheet" type="text/css" href="style2.css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+</head>
+
+<body id="background">
+    <div class="container" style="width:300px; height:200px; justify-content: center; align-items: center; display: flex;">
+		<div class="form">
+			<div id="form">
+				<!--input type="hidden" name="username" value="<%= username %>"-->
+				<input type="text" id="gamename" name="gamename" placeholder="Game Room"></input>
+				<!--input type="hidden" name="owner" value="true"-->
+				<button id="copyButton">Copy link</button> 				
+			</div>
+		</div>
+    </div>
+
+	<script type="text/javascript">	
+
+		var input = document.getElementById("gamename");
+
+		var gameRoom = "";
+		for(let i = 0; i < 10; ++i) {
+			var rdm = Math.floor(Math.random() * 62); 
+			if(rdm < 10)
+				rdm += 48;
+			else if(rdm < 36)
+				rdm += 87;
+			else
+				rdm += 29;
+			gameRoom += String.fromCharCode(rdm);
+		}
+		input.value = window.location.href + gameRoom;
+
+		document.getElementById("copyButton").addEventListener("click", function() {
+			copyToClipboard();
+		});
+
+		function copyToClipboard() {
+			var copyText = document.getElementById("gamename");
+			copyText.select();
+			copyText.setSelectionRange(0, 99999); /* For mobile devices */
+			document.execCommand("copy");
+		}
+    </script>
+	
+</body>
+
+</html>

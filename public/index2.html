@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Form</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body id="background">
+    <div class="container">
+		<div class="form"><!--to enter username and/or create a new game-->
+			<form method="get" action="/new-game" onsubmit="return validateForm()" id="form">
+				<h1>Issou</h1>
+				<input type="text" id="username" name="username" placeholder="Username"/>
+				<button id="createBtn" type="submit">Create new game</button> 	
+				<div style="width:200px; height:20px; margin:auto">
+					<label id="errLabel"></label>
+				</div>
+			</form>
+			<button type="submit" form="form">Test</button> 
+		</div>
+		<div class="verticalLine"></div>
+		<div class="games"><!--list of all available games-->		
+			<table id="gamelist"></table>
+			<canvas id="canvas" width="300px" height="600px"></canvas>	
+		</div>
+    </div>
+
+    <script type="text/javascript">
+  
+		var socket = new WebSocket("ws://" + window.location.href.substring(5)); // change wss:// to wss with heroku host
+		var cnvs = document.getElementById("canvas");
+		var ctx = cnvs.getContext("2d");
+			
+		// TODO : checker s'il y a plus de 6 parties en cours et rendre le bouton CREATE uncliquable
+		
+		socket.onopen = function() {
+		
+			// on state update (refresh game list)
+			// message contains the list of all games
+			socket.onmessage = function(message) {
+				let games = JSON.parse(message.data);
+				document.getElementById("gamelist").innerHTML = "";
+				let gameIndex = 0;
+				for(let game of games) {
+					addGame(game.name, game.nbPlayers, gameIndex); gameIndex++;
+				}
+				
+				var btn = document.getElementById("createBtn");
+				btn.disabled = gameIndex >= 7;	
+			}
+		}
+		
+		function displayError(error) {
+			document.getElementById("errLabel").innerHTML = error;
+			setTimeout(function(){document.getElementById("errLabel").innerHTML = "";}, 3000);
+		}
+		
+		function validateForm() {
+			var username = document.getElementById("username").value;
+			if (username == "") {
+				displayError("username must be filled out");
+				return false;
+			}
+			return true;
+		}
+		
+		function join(gameId) {
+			if(validateForm()) {
+				var username = document.getElementById("username").value;
+				window.location.href = '/lobby?username=' + username + '&gameid=' + gameId + '&owner=false';
+			}
+		}
+		
+		function addGame(name, nbPlayers, gameIndex) {
+			document.getElementById("gamelist").innerHTML += 
+				"<tr><th scope=\"row\"><button onclick=\"join(" + gameIndex + ")\">" + name + 
+				"</button></th><td></td>";
+			drawPlayers(gameIndex, nbPlayers);
+		}
+		
+		// canvas drawing methods
+		function drawPlayers(gameIndex, nbPlayers) {
+			for(let i = 0; i < 4; ++i) {
+				if(i >= nbPlayers) ctx.fillStyle = "#2eb82e"; else ctx.fillStyle = "#e60000";
+				ctx.beginPath();
+				ctx.arc(30 + 40 * i, 33 + gameIndex * 84, 10, 0, 2 * Math.PI);
+				ctx.closePath();
+				ctx.fill();
+				ctx.beginPath();
+				ctx.arc(30 + 40 * i, 60 + gameIndex * 84, 18, 0, Math.PI, 1);
+				ctx.fill();
+				//ctx.stroke();
+			}
+		}
+		
+    </script>
+	
+</body>
+
+</html>

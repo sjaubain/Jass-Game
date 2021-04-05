@@ -1,0 +1,73 @@
+#background {
+	font-family: 'Arial', sans-serif;
+	background-image: url('background.jpeg');
+	background-size: cover;
+    background-origin: content-box;
+    background-repeat: no-repeat;
+	height: 1000px;
+	opacity: 0.9;
+}
+
+.container {
+	display: flex;
+	align-items: center; /* along y axis alignement */
+	/* justify-content: center; /* along x axis alignement */
+	
+	/* center main div on screen */
+    width: 1000px;
+    height: 650px;
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	
+	/* more style */
+	border: solid 1px #000;
+	background-color: ghostwhite;
+}
+
+.form {
+	text-align: center;
+}
+
+button {
+	margin: 20px;
+    border-radius: 10px;
+    width: 130px;
+    height: 40px;
+	background: #fe8;
+	font-family: monospace;
+	background: linear-gradient(to bottom right, #ffd633, #ffeb99);
+	text-transform: uppercase;
+}
+
+button:hover {
+	background: linear-gradient(to bottom right, #c2c2a3, #ebebe0);
+}
+
+.games {
+	width: 800px;
+	height: 600px;
+	text-align: center;
+	display: flex;
+}
+
+#gamelist {
+	margin-left: 100px;
+}
+
+#username {
+	width: 120px;
+    height: 20px;
+    border-radius: 7px;
+}
+
+#errLabel {
+	font-family: monospace;
+	color: red;
+}
+
+.verticalLine {
+	border-left: 3px solid #156115;
+    height: 550px;
+}

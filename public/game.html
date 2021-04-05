@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Jass</title>
+	<link rel="stylesheet" type="text/css" href="style2.css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+</head>
+
+<body id="background">
+	<div id="userid"><%= userid %></div>
+	<div class="content" id="content">
+		<div class="container" id="board">
+			<div class="controls" id="controls">
+				<canvas id="canvas" width="160px", height="120px"></canvas>
+				<div class="leftavatar">
+					<h2 class="pseudo" id="lpseudo" style="--c: #b8e2ff;"></h2>
+				</div>
+				<div class="upboard" id="upboard"></div>
+				<div class="rightavatar">
+					<h2 class="pseudo" id="rpseudo" style="--c: #b8e2ff;"></h2>
+				</div>
+				<div class="upavatar">
+					<h2 class="pseudo" id="upseudo" style="--c: #ffdec7;"></h2>
+				</div>
+				<div class="downavatar">
+					<h2 class="pseudo" id="dpseudo" style="--c: #ffdec7;"></h2>
+				</div>
+				<div class="leftboard" id="leftboard"></div>
+				<div class="rightboard" id="rightboard"></div>
+				<div class="downboard" id="downboard"></div>
+				<div class="centerboard" id="centerboard">
+					<div class= "mid-card" id="dcard" style="--w: 80px; --h: 120px; --t: 130px; --l: 200px"></div>
+					<div class= "mid-card" id="lcard" style="--w: 120px; --h: 80px; --t: 140px; --l: 60px"></div>
+					<div class= "mid-card" id="ucard" style="--w: 80px; --h: 120px; --l: 100px"></div>
+					<div class= "mid-card" id="rcard" style="--w: 120px; --h: 80px; --t: 30px; --l: 200px"></div>
+				</div>
+				<div class="shadowcard" id="shadowcard"></div>
+				<div class="alignedbuttons">
+					<button id="annoncesBtn" onclick="showAnnoncesPopup()" style="margin-top:40px">Annonces</button>
+					<button id="atoutsBtn" onclick="showAtoutsPopup()" style="margin-top:40px">Atouts</button>
+					<div class="annoncesLbl">
+						<label></label>
+						<label></label>
+						<label></label>
+					</div>
+				</div>
+				<div style="height:10px; margin:auto">
+					<label class="errorLbl" id="errorLbl2">error</label>
+				</div>
+			</div>
+
+			<div class="popup" id="scores" style="top: 220px;">
+				<div class="annoncetype" style="--c: #ffdec7">
+					<label class="score" id="redScore" style="--c: #ff8b3d">0</label>
+				</div>
+				<div class="annoncetype" style="--c: #b8e2ff">
+					<label class="score" id="blueScore" style="--c: #66c2ff">0</label>
+				</div>
+			</div>
+
+			<div class="popup" id="atouts">
+				<div class="title">
+					<img class="icon" src="./img/suite.svg"></img>
+					<label>Atouts</label>
+				</div>
+				<div id="atoutcouleurs" class="alignedbuttons">
+					<button class="button squared" onclick="focusBtn('atoutcouleurs', 0)" style="background: url(/img/coeur.svg); background-size: cover;"></button>
+					<button class="button squared" onclick="focusBtn('atoutcouleurs', 1)" style="background: url(/img/carreau.svg); background-size: cover;"></button>
+					<button class="button squared" onclick="focusBtn('atoutcouleurs', 2)" style="background: url(/img/trefle.svg); background-size: cover;"></button>
+					<button class="button squared" onclick="focusBtn('atoutcouleurs', 3)" style="background: url(/img/pique.svg); background-size: cover;"></button>
+				</div>
+				<div class="alignedbuttons">
+					<button id="annoncesOk" onclick="chooseAtout()">Ok</button>
+				</div>
+				<div style="height:10px; margin:auto">
+					<label class="errorLbl" id="errorLbl3"></label>
+				</div>
+			</div>
+
+			<div class="popup" id="annonces">
+				<div class="title">
+					<img class="icon" src="./img/suite.svg"></img>
+					<label>suites</label>
+				</div>
+				<div class="annoncetype" style="--c: gainsboro">
+					<div id="suitestype" class="alignedbuttons">
+						<button class="button squared" onclick="focusBtn('suitestype', 0)" id="3cartes" style="font-size: x-large;">20</button>
+						<button class="button squared" onclick="focusBtn('suitestype', 1)" id="50" style="font-size: x-large;">50</button>
+					</div>
+					<div id="suitesvalue" class="alignedbuttons">
+						<button class="button squared" onclick="focusBtn('suitesvalue', 0)">8</button>
+						<button class="button squared" onclick="focusBtn('suitesvalue', 1)">9</button>
+						<button class="button squared" onclick="focusBtn('suitesvalue', 2)">10</button>
+						<button class="button squared" onclick="focusBtn('suitesvalue', 3)">J</button>
+						<button class="button squared" onclick="focusBtn('suitesvalue', 4)">Q</button>
+						<button class="button squared" onclick="focusBtn('suitesvalue', 5)">K</button>
+						<button class="button squared" onclick="focusBtn('suitesvalue', 6)">A</button>
+					</div>
+					<div id="suitescouleur" class="alignedbuttons">
+						<button class="button squared" onclick="focusBtn('suitescouleur', 0)" style="background: url(/img/coeur.svg); background-size: cover;"></button>
+						<button class="button squared" onclick="focusBtn('suitescouleur', 1)" style="background: url(/img/carreau.svg); background-size: cover;"></button>
+						<button class="button squared" onclick="focusBtn('suitescouleur', 2)" style="background: url(/img/trefle.svg); background-size: cover;"></button>
+						<button class="button squared" onclick="focusBtn('suitescouleur', 3)" style="background: url(/img/pique.svg); background-size: cover;"></button>
+					</div>
+				</div>
+				<div class="title">
+					<img class="icon" src="./img/carre.svg"></img>
+					<label>carres</label>
+				</div>
+				<div class="annoncetype" style="--c: bisque">
+					<div id="carres" class="alignedbuttons">
+						<button class="button squared" onclick="focusBtn('carres', 0)">9</button>
+						<button class="button squared" onclick="focusBtn('carres', 1)">10</button>
+						<button class="button squared" onclick="focusBtn('carres', 2)">J</button>
+						<button class="button squared" onclick="focusBtn('carres', 3)">Q</button>
+						<button class="button squared" onclick="focusBtn('carres', 4)">K</button>
+						<button class="button squared" onclick="focusBtn('carres', 5)">A</button>
+					</div>
+				</div>
+				<div class="alignedbuttons">
+					<button id="annoncesCancel" onclick="hideAnnoncesPopup()">Cancel</button>
+					<button id="annoncesOk" onclick="checkBonus()">Ok</button>
+				</div>
+				
+				<div style="height:10px; margin:auto">
+					<label class="errorLbl" id="errorLbl"></label>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="chat" id="chat">
+			<div class="chatcontent" id="chatcontent">
+			</div>
+			<form id="newmessage" onsubmit="network.sendMessage(); return false;" autocomplete="off">
+				<input type="text" id="message" placeholder="Nouveau message"><br>
+			</form>
+		</div>
+	</div>
+    <script type="text/javascript" src="../src/app.js"></script>
+	
+</body>
+
+</html>
